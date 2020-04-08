@@ -1,0 +1,8 @@
+.menucontainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+p.menuitem {
+  font-size: 30px;
+}
