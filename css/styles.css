@@ -60,7 +60,7 @@ body {
   margin-right: 6px;
 }
 
-p.menuitem {
+.menuitem, li {
   font-size: 26px;
   line-height: 30px;
   font-family: 'Libre Baskerville', serif;
@@ -68,10 +68,13 @@ p.menuitem {
 
 a:link {
   text-decoration: none!important;
+
 }
 
-/* a:visited {
+a:visited {
+  color: black;
   text-decoration: none!important;
+
 }
 
 a:hover {
@@ -80,13 +83,36 @@ a:hover {
 
 a:focus {
   text-decoration: none!important;
+  color: black;
 }
 
 a:active {
   text-decoration: none!important;
-} */
+  color: black;
+}
 
-.menucontainer {
+.menuContainer {
   display: flex;
   justify-content: space-between;
+}
+
+.subList{
+    position: absolute;
+}
+
+.lastMenuItem {
+  text-align: right;
+}
+
+#projectsHome {
+  display:none;
+}
+
+#nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+#nav ul {
+  display:none;
 }
