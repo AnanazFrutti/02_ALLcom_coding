@@ -60,9 +60,9 @@ body {
   margin-right: 6px;
 }
 
-.menuitem, li {
-  font-size: 26px;
-  line-height: 30px;
+li {
+  font-size: 24px;
+  line-height: 28px;
   font-family: 'Libre Baskerville', serif;
 }
 
@@ -89,11 +89,6 @@ a:focus {
 a:active {
   text-decoration: none!important;
   color: black;
-}
-
-.menuContainer {
-  display: flex;
-  justify-content: space-between;
 }
 
 .subList{
