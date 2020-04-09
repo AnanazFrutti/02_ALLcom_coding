@@ -1,3 +1,6 @@
+
+
+
 $('#nav > li').each(function(){
        var t = null;
        var li = $(this);
@@ -16,13 +19,6 @@ $('#nav > li').each(function(){
        });
    });
 
-
-
-
-
 (function() {
    // your page initialization code here
-
-
-
 })();
