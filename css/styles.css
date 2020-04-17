@@ -60,8 +60,8 @@ html {
 }
 
 li, p {
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 1.3vw;
+  line-height: 1.75vw;
   font-family: 'Libre Baskerville', serif;
 }
 
@@ -98,8 +98,8 @@ a:active {
   text-align: right;
 }
 
-.test1 {
-  color: red;
+.containerCol {
+  padding: 0 20px;
 }
 
 #projectsHome {
@@ -110,16 +110,50 @@ a:active {
   top: 0;
   left: 0; */
 }
-#nav {
 
+.projectcontainer1, .projectcontainer2 {
+  margin-bottom: 100px;
+}
+#nav {
   display: flex;
   justify-content: space-between;
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  /* display: none; /* Hidden by default */ */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }
 
 #nav ul {
   display:none;
+}
+
+.testdiv {
+  position:absolute;
+  top:0;
+  left:0;
+  background-color: red;
+  height:30px;
+  width: 60%;
 }
 
 .imgcontainer {
@@ -127,20 +161,40 @@ a:active {
   overflow: hidden;
 }
 
+.col-left {
+  /* padding: 10px 20px; */
+  display: flex;
+  flex-direction: row;
+}
+
+.col-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.quote {
+  text-indent: 50px;
+}
+
+.breakline {
+  overflow-wrap: break-word;
+}
+
 .containertext {
-  margin-left: 6px;
-  margin-right: 6px;
-  padding: 10px 20px;
-  background: grey;
-  width: 40%;
+  width: 45%;
 }
 
 .containertextFootnote {
-  margin-left: 6px;
-  margin-right: 6px;
-  padding: 10px 20px;
-  background: green;
-  width: 20%;
+  /* padding: 10px 20px; */
+  width: 10%;
+}
+
+.title {
+  color: grey;
+}
+
+.projecttype {
+  color: red;
 }
 
 header .container {
@@ -153,6 +207,8 @@ header .container {
   padding-top: 25px;
   padding-bottom: 5px;
 }
+
+
 
 .headroom {
   position: fixed;
@@ -171,13 +227,14 @@ header .container {
 }
 
 .footnote {
-  font-size: 14px;
+  font-size: 12px;
+  line-height: normal;
+  padding: 0 20px;
 }
 .headroom--unpinned {
   top: -10%;
 }
 
 section {
-  display: flex;
-  flex-direction: row;
+
 }
