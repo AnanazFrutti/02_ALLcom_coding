@@ -29,21 +29,22 @@ $('#nav > li').each(function(){
        anchor.addEventListener('click', function (e) {
            e.preventDefault();
 
-           // var element = document.getElementsByClassName('projectcontainer1');
-           // var element = document.getElemetbyId('writingsAnchor1');
+           var anchorId = this.getAttribute('href');
+           anchorId = anchorId.substring(1);
+           var element = document.getElementById(anchorId);
+           console.log(typeof anchorId);
 
-//            var headerOffset = 100;
-//            var elementPosition = element.getBoundingClientRect();
-// ;
-//             console.log(elementPosition);
-//            var offsetPosition = elementPosition - headerOffset;
+           var headerOffset = 30;
+           var elementPosition = element.getBoundingClientRect().top;
+           var offsetPosition = elementPosition - headerOffset;
 
+            window.scrollTo({
+             top: offsetPosition,
+             behavior: 'smooth'
+           });
 
-           // document.querySelector(this.getAttribute('href')).scrollIntoView({
-           //   top: offsetPosition,
-           //   behavior: 'smooth'
-           // });
        });
+
    });
 
 
