@@ -25,44 +25,47 @@ $('#nav > li').each(function(){
     }
 
 
-   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-       anchor.addEventListener('click', function (e) {
-           e.preventDefault();
-
-           var anchorId = this.getAttribute('href');
-           anchorId = anchorId.substring(1);
-           var element = document.getElementById(anchorId);
-           console.log(typeof anchorId);
-
-           var headerOffset = 30;
-           var elementPosition = element.getBoundingClientRect().top;
-           var offsetPosition = elementPosition - headerOffset;
-
-            window.scrollTo({
-             top: offsetPosition,
-             behavior: 'smooth'
-           });
-       });
-   });
+   // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+   //     anchor.addEventListener('click', function (e) {
+   //         e.preventDefault();
+   //
+   //         var anchorId = this.getAttribute('href');
+   //         anchorId = anchorId.substring(1);
+   //         var element = document.getElementById(anchorId);
+   //         console.log(typeof anchorId);
+   //
+   //         var headerOffset = 30;
+   //         var elementPosition = element.getBoundingClientRect().top;
+   //         var offsetPosition = elementPosition - headerOffset;
+   //
+   //          window.scrollTo({
+   //           top: offsetPosition,
+   //           behavior: 'smooth'
+   //         });
+   //     });
+   // });
 
 // jump to anchor on new site
 var jump=function(e)
    {
-      if (e){
+      if (e) {
+         // ausgegeben wenn man auf index.html ist und auf den link index.html clickt
           e.preventDefault();
-          var target = $(this).attr("href");
-          console.log("1");
-      }else{
+          var target = $(this).attr("href"); // returns name of anchor from menu
+          console.log("1" + ", target: " + target);
+      } else {
+         // ausgegeben wenn man von index.html auf einen link mit anchor clickt; anschließend wird 3 ausgelöst
           var target = location.hash;
-          console.log("2");
+          console.log("2" + ", target: " + target);
       }
 
       $('html,body').animate(
-      {
-          scrollTop: $(target).offset().top
-      },2000,function()
-      {
-          location.hash = target;
+         {
+             scrollTop: $(target).offset().top
+         }, 1000, function()
+         {
+             location.hash = target; // wird ausgeführt sobald die scrollanimation zu Ende ist
+             console.log("5");
       });
 
    }
@@ -81,6 +84,7 @@ $(document).ready(function()
             console.log("3");
         }, 0);
     }else{
+      // ausgegeben wenn man von index.html auf writings (ohne anchor) clickt, oder von writings.html auf index (ohne anchor)
         $('html, body').show();
         console.log("4");
     }
