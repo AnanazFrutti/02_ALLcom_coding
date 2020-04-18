@@ -156,9 +156,25 @@ a:active {
   width: 60%;
 }
 
+.atab {
+	tab-size:6;
+	-moz-tab-size:6;
+	-ms-tab-size:6;
+	/* white-space: pre; */
+  white-space: pre-wrap;
+}
+
+.imgwidth {
+  width: 100%;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
 .imgcontainer {
   width: 100%;
   overflow: hidden;
+
 }
 
 .col-left {
