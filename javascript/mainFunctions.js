@@ -296,7 +296,7 @@ function createInitialCircles() { // 1.2
         generateCirclePosition();
         circle = new KeywordCircle(initialX,initialY);
         circleObjectArr.push(circle); // Array mit allen KeywordCircle Instanzen
-        // circleObjectArrPosY.push(circleObjectArr[i].initialY); // Array mit allen Keyword Instanzen y-Werten RAUS?
+        circleObjectArrPosY.push(circleObjectArr[i].initialY); // Array mit allen Keyword Instanzen y-Werten RAUS?
         console.log("i: " + i);
         console.log(circle);
     }
@@ -307,53 +307,57 @@ function updateCirclePos() {
     var step = (new Date()).getTime() - startTime; // zählt als counter hoch
     step *= (-0.01);
 
-    // for(var i=0;i<5;i++){
-    // }
-    // console.log("steppArr: " + stepArr); funktioniert
-    function bla() {
-      for(var i=0;i<5;i++){ //circleObjectArr verändert sich innerhalb der for Schleife, aber nicht außerhalb....
+    // --------------------------------
+
+    // stepArr[0]=step;
+    // startTimeArr[0] = startTime;
+    // console.log(stepArr[0]);
+
+    // --------------------------------
+
+    function moveCirclesUpwards() {
+      // move each circle seperately
+      for(var i=0;i<keywords.length;i++){ //circleObjectArr verändert sich innerhalb der for Schleife, aber nicht außerhalb....
         stepArr[i]=step;
         startTimeArr[i] = startTime;
         circlePosUpdate = circleObjectArrPosY[i] + stepArr[i];
         circleObjectArr[i].initialY = circlePosUpdate;
         $(".circle" + i).css("--keywordcircle-top", circleObjectArr[i].initialY);
 
-          // if (circleObjectArr[i].initialY < 50) {
-          //   circleObjectArrPosY[i] = 500;
-          //
-          //   startTime[i] = +(new Date()); // reset Starttime
-          //   updateCirclePos();
-          //   //   // generateCirclePosition();
-          //   //   circleObjectArr[i].initialY = 200;
-          //   //   console.log(circleObjectArr[i].initialY);
-          //   //   // $(".circle" + i).css("left", circleObjectArr[i].initialX);
-          //   //   $(".circle" + i).css("--keywordcircle-top", circleObjectArr[i].initialY);
-          //   //   // updateCirclePos(); // starte updateCircle von Anfang an
-          // }
+          if (circleObjectArr[i].initialY < 50) {
+            circleObjectArrPosY[i] = 500;
+
+            startTime[i] = +(new Date()); // reset Starttime
+            updateCirclePos();
+            //   // generateCirclePosition();
+            //   circleObjectArr[i].initialY = 200;
+            //   console.log(circleObjectArr[i].initialY);
+            //   // $(".circle" + i).css("left", circleObjectArr[i].initialX);
+            //   $(".circle" + i).css("--keywordcircle-top", circleObjectArr[i].initialY);
+            //   // updateCirclePos(); // starte updateCircle von Anfang an
+          }
           // REBIRTH NEW CIRCLE
-          // if (circleObjectArr[i].initialY < 50) {
-
-
+          if (circleObjectArr[i].initialY < 50) {
             // updateCirclepos?
-            // generateCirclePosition();
-            // circle = new KeywordCircle(initialX,initialY);
-            // circleObjectArr.push(circle);
-            // $(".circle" + i).css("left", circleObjectArr[i].initialX);
-            // $(".circle" + i).css("--keywordcircle-top", circleObjectArr[i].initialY);
-            // circleObjectArrPosY.push(circleObjectArr[i].initialY);
-            //
-            // console.log(i);
-            // console.log("davor: "+circleObjectArrPosY[i]);
-            // console.log(circleArrPos[i].initialY);
-            // circleObjectArrPosY[i] = window.innerHeight-100;//array updatet sich nicht
-            // circleObjectArr[i].initialY = circleObjectArrPosY[i];
-            // console.log("danach: "+circleObjectArrPosY[i]);
-            // console.log(circleObjectArr[i].initialY);
-            // debugger;
-          // }
+            generateCirclePosition();
+            circle = new KeywordCircle(initialX,initialY);
+            circleObjectArr.push(circle);
+            $(".circle" + i).css("left", circleObjectArr[i].initialX);
+            $(".circle" + i).css("--keywordcircle-top", circleObjectArr[i].initialY);
+            circleObjectArrPosY.push(circleObjectArr[i].initialY);
+            console.log(i);
+            console.log("davor: "+circleObjectArrPosY[i]);
+            console.log(circleArrPos[i].initialY);
+            circleObjectArrPosY[i] = window.innerHeight-100;//array updatet sich nicht
+            circleObjectArr[i].initialY = circleObjectArrPosY[i];
+            console.log("danach: "+circleObjectArrPosY[i]);
+            console.log(circleObjectArr[i].initialY);
+          }
 
         }
     }
+
+    moveCirclesUpwards();
     requestAnimationFrame(updateCirclePos);
 
 }
@@ -382,7 +386,7 @@ function drawFirstCircles() { // 2
         console.log("circleObjectArr " + circleObjectArr[i]);
     }
 
-    // updateCirclePos(); //raus und stattdessen in document.ready function drinlassen?
+    updateCirclePos(); //raus und stattdessen in document.ready function drinlassen?
   }
 
 // ---------------------------------------------------------------------------- CIRCLES END
