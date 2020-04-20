@@ -12,11 +12,11 @@ var randomPosX;
 var randomPosY;
 var yyy;
 var initialPositionX;
-var initialPositionY;
+var initialPositionY = new Array (5);
 var circleArr = new Array();
 
 
-var startTime = +(new Date());
+var startTime = new Date().getTime(); //stores timestamp when document is open
 var startTimeArr = new Array(5);
 
 var circle;
@@ -46,6 +46,8 @@ var spanWrapperWidth;
 var updateSpanWrapperWidthArr;
 
 var element = document.body;
+
+console.log("window.innerHeight " + window.innerHeight);
 
 // ---------------------------------------------------- Dropdown menu on hover
 
@@ -296,68 +298,62 @@ function createInitialCircles() { // 1.2
         generateCirclePosition();
         circle = new KeywordCircle(initialX,initialY);
         circleObjectArr.push(circle); // Array mit allen KeywordCircle Instanzen
-        circleObjectArrPosY.push(circleObjectArr[i].initialY); // Array mit allen Keyword Instanzen y-Werten RAUS?
+        initialPositionY[i] = circleObjectArr[i].initialY;
+        circleObjectArrPosY.push(initialPositionY[i]); // initial position for animation
         console.log("i: " + i);
         console.log(circle);
     }
 }
 
+// let start = null;
+// let loop = (timestamp) => {
+//   if (!start) {
+//
+//     start = timestamp;
+//   };
+//   const progress = timestamp - start;
+//   if (progress > 10000) {
+//     console.log('loop', start);
+//     start = timestamp;
+//   }
+//   requestAnimationFrame(loop)
+// };
+// requestAnimationFrame(loop);
+
+
 
 function updateCirclePos() {
-    var step = (new Date()).getTime() - startTime; // zählt als counter hoch
-    step *= (-0.01);
 
-    // --------------------------------
+      var step = (new Date()).getTime() - startTime; // Counter: jetzige Zeit - Zeit als Dokument geöffnet wurde = Differenz
+      step *= (-0.08); // speed of circle
 
-    // stepArr[0]=step;
-    // startTimeArr[0] = startTime;
-    // console.log(stepArr[0]);
+      stepArr[0]=step;
+      startTimeArr[0] = startTime;
+      initialPositionY[0] = circleObjectArrPosY[0] + stepArr[0]; //wird nicht aus if upgedated
+      $(".circle" + 0).css("--keywordcircle-top", initialPositionY[0]);
+      console.log("blaaaa" + initialPositionY[0]);
 
-    // --------------------------------
+      if (initialPositionY[0] < -200) {
+        console.log("kreis raus");
+        // circleObjectArrPosY[0] = window.innerHeight-diameterCircle;
+        circleObjectArrPosY[0] = window.innerHeight-diameterCircle;
+        initialPositionY[0]  = circleObjectArrPosY[0]
+        $(".circle" + 0).css("--keywordcircle-top", initialPositionY[0] );
+        console.log("initialPositionY[0]  " + initialPositionY[0] );
+        startTime = new Date().getTime(); //reset Timer
+      }
 
     function moveCirclesUpwards() {
+
+
+
+
       // move each circle seperately
-      for(var i=0;i<keywords.length;i++){ //circleObjectArr verändert sich innerhalb der for Schleife, aber nicht außerhalb....
-        stepArr[i]=step;
-        startTimeArr[i] = startTime;
-        circlePosUpdate = circleObjectArrPosY[i] + stepArr[i];
-        circleObjectArr[i].initialY = circlePosUpdate;
-        $(".circle" + i).css("--keywordcircle-top", circleObjectArr[i].initialY);
-
-          if (circleObjectArr[i].initialY < 50) {
-            circleObjectArrPosY[i] = 500;
-
-            startTime[i] = +(new Date()); // reset Starttime
-            updateCirclePos();
-            //   // generateCirclePosition();
-            //   circleObjectArr[i].initialY = 200;
-            //   console.log(circleObjectArr[i].initialY);
-            //   // $(".circle" + i).css("left", circleObjectArr[i].initialX);
-            //   $(".circle" + i).css("--keywordcircle-top", circleObjectArr[i].initialY);
-            //   // updateCirclePos(); // starte updateCircle von Anfang an
-          }
-          // REBIRTH NEW CIRCLE
-          if (circleObjectArr[i].initialY < 50) {
-            // updateCirclepos?
-            generateCirclePosition();
-            circle = new KeywordCircle(initialX,initialY);
-            circleObjectArr.push(circle);
-            $(".circle" + i).css("left", circleObjectArr[i].initialX);
-            $(".circle" + i).css("--keywordcircle-top", circleObjectArr[i].initialY);
-            circleObjectArrPosY.push(circleObjectArr[i].initialY);
-            console.log(i);
-            console.log("davor: "+circleObjectArrPosY[i]);
-            console.log(circleArrPos[i].initialY);
-            circleObjectArrPosY[i] = window.innerHeight-100;//array updatet sich nicht
-            circleObjectArr[i].initialY = circleObjectArrPosY[i];
-            console.log("danach: "+circleObjectArrPosY[i]);
-            console.log(circleObjectArr[i].initialY);
-          }
-
+        for(var i=0;i<keywords.length;i++){
         }
     }
 
-    moveCirclesUpwards();
+    // moveCirclesUpwards();
     requestAnimationFrame(updateCirclePos);
 
 }
@@ -386,7 +382,7 @@ function drawFirstCircles() { // 2
         console.log("circleObjectArr " + circleObjectArr[i]);
     }
 
-    updateCirclePos(); //raus und stattdessen in document.ready function drinlassen?
+    // updateCirclePos(); //raus und stattdessen in document.ready function drinlassen?
   }
 
 // ---------------------------------------------------------------------------- CIRCLES END
